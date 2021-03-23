@@ -1,0 +1,140 @@
+\documentclass[
+    12pt,
+    a4paper,
+    parskip=half,
+]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{libertinus}
+\usepackage[lining,scaled=0.825]{FiraMono}
+
+\usepackage[english]{babel}
+
+% Use less space for the page number
+\usepackage[margin=2.5cm,footskip=36pt]{geometry}
+\usepackage{graphicx}
+\usepackage[htt]{hyphenat}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{subcaption}
+% Required for listings's upquote
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\usepackage[color=ovgu-orange]{todonotes}
+
+\usepackage{lipsum}
+
+\graphicspath{{./figures/}}
+
+\definecolor{ovgu-blue}{HTML}{0068B4}
+\definecolor{ovgu-darkgray}{HTML}{606060}
+\definecolor{ovgu-lightgray}{HTML}{C0C0C0}
+\definecolor{ovgu-orange}{HTML}{F39100}
+\definecolor{ovgu-purple}{HTML}{7A003F}
+
+\lstset{
+	basicstyle=\ttfamily,
+	commentstyle=\color{ovgu-darkgray},
+	keywordstyle=\color{ovgu-blue},
+	numberstyle=\ttfamily\color{ovgu-darkgray},
+	stringstyle=\color{ovgu-purple},
+	rulecolor=\color{ovgu-lightgray},
+	frame=single,
+	numbers=left,
+	language=C,
+	breaklines=true,
+	breakatwhitespace=true,
+	postbreak=\hbox{$\hookrightarrow$ },
+	showlines=true,
+	showstringspaces=false,
+	upquote=true,
+	tabsize=4,
+	gobble=0,
+	captionpos=b,
+	abovecaptionskip=\medskipamount,
+}
+
+\titlehead{\centering\includegraphics[width=0.66\textwidth]{OVGU-INF}}
+
+\title{Title}
+\subtitle{Subtitle}
+
+\author{
+First Author\\
+{\large\href{mailto:first.author@ovgu.de}{\nolinkurl{first.author@ovgu.de}}}
+\and
+Second Author\\
+{\large\href{mailto:second.author@ovgu.de}{\nolinkurl{second.author@ovgu.de}}}
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+This report template is available at \url{https://github.com/parcio/templates} and consists of \cref{sec:introduction,sec:background,sec:evaluation,sec:conclusion}.
+
+\section{Introduction}
+\label{sec:introduction}
+
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{OVGU-INF}
+        \caption{Left}
+        \label{fig:left}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{OVGU-INF}
+        \caption{Right}
+        \label{fig:right}
+    \end{subfigure}
+    \caption{Caption}
+    \label{fig:both}
+\end{figure}
+
+You can refer to the subfigures (\cref{fig:left,fig:right}) or the figure (\cref{fig:both}).
+
+\section{Background}
+\label{sec:background}
+
+You can comfortably reference literature~\cite{DBLP:journals/superfri/DuweLMSF0B020}.\footnote{This is a footnote.}
+
+\section{Evaluation}
+\label{sec:evaluation}
+
+\begin{lstlisting}[caption=Listing]
+printf("Hello world!\n");
+
+// Comment
+for (int i = 0; i < m; i++) {
+    for (int j = 0; j < n; j++) {
+        sum += 'a';
+    }
+}
+\end{lstlisting}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\todo[inline]{FIXME}
+
+\lipsum[1-3]
+\todo{FIXME: remove this}
+
+\newpage
+
+\bibliographystyle{apalike}
+\bibliography{report}
+
+\end{document}
