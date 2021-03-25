@@ -80,7 +80,17 @@ Second Author\\
 
 \maketitle
 
+\begin{abstract}
+\lipsum[1]
+
 This report template is available at \url{https://github.com/parcio/templates} and consists of \cref{sec:introduction,sec:background,sec:evaluation,sec:conclusion}.
+\end{abstract}
+
+\newpage
+
+\tableofcontents
+
+\newpage
 
 \section{Introduction}
 \label{sec:introduction}
@@ -110,10 +120,27 @@ You can refer to the subfigures (\cref{fig:left,fig:right}) or the figure (\cref
 
 You can comfortably reference literature~\cite{DBLP:journals/superfri/DuweLMSF0B020}.\footnote{This is a footnote.}
 
+\begin{table}[ht]
+    \centering
+	\begin{tabular}{|l|c|r|}
+		\hline
+		\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+        \hline
+		\hline
+		Row 1 & Row 1 & Row 1 \\
+		Row 2 & Row 2 & Row 2 \\
+		\hline
+	\end{tabular}
+	\caption{Caption}
+	\label{tab:table}
+\end{table}
+
+You can also refer to tables (\cref{tab:table}).
+
 \section{Evaluation}
 \label{sec:evaluation}
 
-\begin{lstlisting}[caption=Listing]
+\begin{lstlisting}[caption=Caption,label=lst:hello-world]
 printf("Hello world!\n");
 
 // Comment
@@ -123,6 +150,8 @@ for (int i = 0; i < m; i++) {
     }
 }
 \end{lstlisting}
+
+You can also refer to listings (\cref{lst:hello-world}).
 
 \section{Conclusion}
 \label{sec:conclusion}
