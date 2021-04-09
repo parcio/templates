@@ -23,3 +23,12 @@ jobs:
         with:
           name: report
           path: report/report.pdf
+      - name: Build thesis
+        run: |
+          cd thesis
+          latexmk -pdf thesis.tex
+      - name: Upload thesis
+        uses: actions/upload-artifact@v2
+        with:
+          name: thesis
+          path: thesis/thesis.pdf

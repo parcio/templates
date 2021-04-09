@@ -1,0 +1,223 @@
+\documentclass[
+	12pt,
+	a4paper,
+	abstract,
+	bibliography=totoc,
+	chapterprefix,
+	numbers=endperiod,
+	parskip=half,
+]{scrreprt}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{libertinus}
+\usepackage[varqu,scaled=0.95]{inconsolata}
+\usepackage{newtxmath}
+
+\usepackage[english]{babel}
+
+% Use less space for the page number
+\usepackage[margin=2.5cm,footskip=36pt]{geometry}
+\usepackage{graphicx}
+\usepackage[htt]{hyphenat}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{subcaption}
+% Required for listings's upquote
+\usepackage{textcomp}
+\usepackage{upquote}
+\usepackage{xcolor}
+
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\usepackage[color=ovgu-orange]{todonotes}
+
+\usepackage{lipsum}
+
+\graphicspath{{./figures/}}
+
+\definecolor{ovgu-blue}{HTML}{0068B4}
+\definecolor{ovgu-darkgray}{HTML}{606060}
+\definecolor{ovgu-lightgray}{HTML}{C0C0C0}
+\definecolor{ovgu-orange}{HTML}{F39100}
+\definecolor{ovgu-purple}{HTML}{7A003F}
+
+\lstset{
+	basicstyle=\ttfamily,
+	commentstyle=\color{ovgu-darkgray},
+	keywordstyle=\color{ovgu-blue},
+	numberstyle=\ttfamily\color{ovgu-darkgray},
+	stringstyle=\color{ovgu-purple},
+	rulecolor=\color{ovgu-lightgray},
+	frame=single,
+	numbers=left,
+	language=C,
+	breaklines=true,
+	breakatwhitespace=true,
+	postbreak=\hbox{$\hookrightarrow$ },
+	showlines=true,
+	showstringspaces=false,
+	upquote=true,
+	tabsize=4,
+	gobble=0,
+	captionpos=b,
+	abovecaptionskip=\medskipamount,
+}
+
+\titlehead{\centering\includegraphics[width=0.66\textwidth]{OVGU-INF}}
+
+\subject{Bachelor/Master Thesis}
+\title{Title}
+
+\author{
+Author\\
+{\large\href{mailto:author@ovgu.de}{\nolinkurl{author@ovgu.de}}}
+}
+
+\date{\today}
+
+\publishers{
+First Reviewer:\\
+Prof. Dr. Musterfrau
+
+\medskip
+
+Second Reviewer:\\
+Prof. Dr. Mustermann
+
+\medskip
+
+Supervisor:\\
+Dr. Evil
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\lipsum[1]
+
+This thesis template is available at \url{https://github.com/parcio/templates} and consists of \cref{cha:introduction,cha:background,cha:evaluation,cha:conclusion}.
+It also contains \cref{cha:appendix}.
+\end{abstract}
+
+\tableofcontents
+
+\chapter{Introduction}
+\label{cha:introduction}
+
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{OVGU-INF}
+		\caption{Left}
+		\label{fig:left}
+	\end{subfigure}
+	\begin{subfigure}{0.45\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{OVGU-INF}
+		\caption{Right}
+		\label{fig:right}
+	\end{subfigure}
+	\caption{Caption}
+	\label{fig:both}
+\end{figure}
+
+You can refer to the subfigures (\cref{fig:left,fig:right}) or the figure (\cref{fig:both}).
+
+\chapter{Background}
+\label{cha:background}
+
+You can comfortably reference literature~\cite{DBLP:journals/superfri/DuweLMSF0B020}.\footnote{This is a footnote.}
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|c|r|}
+		\hline
+		\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+		\hline
+		\hline
+		Row 1 & Row 1 & Row 1 \\
+		Row 2 & Row 2 & Row 2 \\
+		\hline
+	\end{tabular}
+	\caption{Caption}
+	\label{tab:table}
+\end{table}
+
+You can also refer to tables (\cref{tab:table}).
+
+\section{Math}
+
+\[
+	E = m c^2
+\]
+
+\chapter{Evaluation}
+\label{cha:evaluation}
+
+\begin{lstlisting}[caption=Caption,label=lst:hello-world]
+printf("Hello world!\n");
+
+// Comment
+for (int i = 0; i < m; i++) {
+	for (int j = 0; j < n; j++) {
+		sum += 'a';
+	}
+}
+\end{lstlisting}
+
+You can also refer to listings (\cref{lst:hello-world}).
+
+\chapter{Conclusion}
+\label{cha:conclusion}
+
+\todo[inline]{FIXME}
+
+\lipsum[1-3]
+\todo{FIXME: remove this}
+
+\bibliographystyle{apalike}
+\bibliography{thesis}
+
+\appendix
+
+\chapter{Appendix}
+\label{cha:appendix}
+
+\begin{lstlisting}[caption=Caption]
+printf("Hello world!\n");
+
+// Comment
+for (int i = 0; i < m; i++) {
+	for (int j = 0; j < n; j++) {
+		sum += 'a';
+	}
+}
+\end{lstlisting}
+
+\chapter*{}
+
+\section*{Statement of Authorship}
+
+I herewith assure that I wrote the present thesis independently, that the thesis has not been partially or fully submitted as graded academic work and that I have used no other means than the ones indicated.
+I have indicated all parts of the work in which sources are used according to their wording or to their meaning.
+
+I am aware of the fact that violations of copyright can lead to injunctive relief and claims for damages of the author as well as a penalty by the law enforcement agency.
+
+\bigskip
+
+Magdeburg, \today
+
+\bigskip
+\bigskip
+
+\rule{0.5\textwidth}{0.5pt}\\
+\hspace*{0.25em}Signature
+
+\end{document}
