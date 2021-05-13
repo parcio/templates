@@ -14,6 +14,15 @@ jobs:
         run: |
           sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
+      - name: Build presentation
+        run: |
+          cd presentation
+          latexmk -pdf presentation.tex
+      - name: Upload presentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: presentation
+          path: presentation/presentation.pdf
       - name: Build report
         run: |
           cd report

@@ -1,0 +1,220 @@
+\documentclass[
+	aspectratio=169,
+	compress,
+]{beamer}
+
+\usetheme{Magdeburg}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{libertinus}
+\usepackage[varqu,scaled=0.95]{inconsolata}
+\usepackage{newtxmath}
+
+\usepackage[english]{babel}
+
+\usepackage{appendixnumberbeamer}
+\usepackage{graphicx}
+\usepackage[htt]{hyphenat}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{subcaption}
+% Required for listings's upquote
+\usepackage{textcomp}
+\usepackage{upquote}
+\usepackage{xcolor}
+
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\usepackage[color=ovgu-orange]{todonotes}
+
+\usepackage{lipsum}
+
+\graphicspath{{./figures/}}
+
+\lstset{
+	basicstyle=\ttfamily\small,
+	commentstyle=\color{ovgu-darkgray},
+	keywordstyle=\color{ovgu-blue},
+	numberstyle=\ttfamily\small\color{ovgu-darkgray},
+	stringstyle=\color{ovgu-purple},
+	rulecolor=\color{ovgu-lightgray},
+	frame=single,
+	numbers=left,
+	language=C,
+	breaklines=true,
+	breakatwhitespace=true,
+	postbreak=\hbox{$\hookrightarrow$ },
+	showlines=true,
+	showstringspaces=false,
+	upquote=true,
+	tabsize=4,
+	gobble=4,
+	captionpos=b,
+	abovecaptionskip=\medskipamount,
+}
+
+\newcommand{\navframetitle}[1]{\frametitle{#1\hfill{\footnotesize\lastsection{}}}}
+
+\title{Title}
+% Show the date below the subtitle instead of below the author
+\subtitle{
+Subtitle\\
+{\small\today}
+}
+\date{}
+
+\author[Author]{
+Author\\
+{\footnotesize\href{mailto:author@ovgu.de}{\nolinkurl{author@ovgu.de}}}
+}
+
+\institute{
+Faculty of Computer Science\\
+Otto von Guericke University Magdeburg
+}
+
+\titlegraphic{\vspace{0.9cm}\hfill\includegraphics[width=0.375\textwidth]{OVGU-INF}}
+
+\AtBeginSection{
+	\begin{frame}
+		\navframetitle{Outline}
+
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\AtBeginSubsection{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+\begin{frame}
+	\navframetitle{Template}
+
+	\begin{itemize}
+		\item This presentation template is available at \url{https://github.com/parcio/templates} and consists of \cref{sec:introduction,sec:background,sec:evaluation,sec:conclusion}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\navframetitle{Figures}
+
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OVGU-INF}
+			\caption{Left}
+			\label{fig:left}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=0.9\textwidth]{OVGU-INF}
+			\caption{Right}
+			\label{fig:right}
+		\end{subfigure}
+		\caption{Caption}
+		\label{fig:both}
+	\end{figure}
+
+	\begin{itemize}
+		\item You can refer to the subfigures (\cref{fig:left,fig:right}) or the figure (\cref{fig:both})
+	\end{itemize}
+\end{frame}
+
+\section{Background}
+\label{sec:background}
+
+\begin{frame}
+	\navframetitle{References}
+
+	\begin{itemize}
+		\item You can comfortably reference literature~\cite{DBLP:journals/superfri/DuweLMSF0B020}\footnote{This is a footnote.}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\navframetitle{Tables}
+
+	\begin{table}[ht]
+		\centering
+		\begin{tabular}{|l|c|r|}
+			\hline
+			\textbf{Header 1} & \textbf{Header 2} & \textbf{Header 3} \\
+			\hline
+			\hline
+			Row 1 & Row 1 & Row 1 \\
+			Row 2 & Row 2 & Row 2 \\
+			\hline
+		\end{tabular}
+		\caption{Caption}
+		\label{tab:table}
+	\end{table}
+
+	\begin{itemize}
+		\item You can also refer to tables (\cref{tab:table})
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\navframetitle{Math}
+
+	\[
+		E = m c^2
+	\]
+\end{frame}
+
+\section{Evaluation}
+\label{sec:evaluation}
+
+\begin{frame}[fragile]
+	\navframetitle{Listings}
+
+	\begin{lstlisting}[caption=Caption,label=lst:hello-world]
+	printf("Hello world!\n");
+
+	// Comment
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			sum += 'a';
+		}
+	}
+	\end{lstlisting}
+
+	\begin{itemize}
+		\item You can also refer to listings (\cref{lst:hello-world})
+	\end{itemize}
+\end{frame}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\begin{frame}
+	\navframetitle{Todos}
+
+	\todo[inline]{FIXME}
+
+	\lipsum[1]
+\end{frame}
+
+\appendix
+
+\AtBeginSection{}
+\AtBeginSubsection{}
+
+\section{References}
+
+\begin{frame}[allowframebreaks]
+	\frametitle{References}
+
+	\bibliographystyle{apalike}
+	\bibliography{presentation}
+\end{frame}
+
+\end{document}
