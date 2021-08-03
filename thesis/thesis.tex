@@ -110,6 +110,10 @@ It also contains \cref{cha:appendix}.
 \chapter{Introduction}
 \label{cha:introduction}
 
+\textit{In this chapter, ...}
+
+\section{Motivation}
+
 \begin{figure}[ht]
 	\centering
 	\begin{subfigure}{0.45\textwidth}
@@ -130,10 +134,21 @@ It also contains \cref{cha:appendix}.
 
 You can refer to the subfigures (\cref{fig:left,fig:right}) or the figure (\cref{fig:both}).
 
+\section*{Summary}
+
+\lipsum[2]
+
 \chapter{Background}
 \label{cha:background}
 
+\textit{In this chapter, ...}
+
+\section{Citations}
+
 You can comfortably reference literature~\cite{DBLP:journals/superfri/DuweLMSF0B020}.\footnote{This is a footnote.}
+BibTeX entries for a large number of publications can be found at \url{https://dblp.org/}.
+
+\section{Tables}
 
 \begin{table}[ht]
 	\centering
@@ -158,8 +173,16 @@ You can also refer to tables (\cref{tab:table}).
 	E = m c^2
 \]
 
+\section*{Summary}
+
+\lipsum[2]
+
 \chapter{Evaluation}
 \label{cha:evaluation}
+
+\textit{In this chapter, ...}
+
+\section{Listings}
 
 \begin{lstlisting}[caption=Caption,label=lst:hello-world]
 printf("Hello world!\n");
@@ -174,13 +197,25 @@ for (int i = 0; i < m; i++) {
 
 You can also refer to listings (\cref{lst:hello-world}).
 
+\section*{Summary}
+
+\lipsum[2]
+
 \chapter{Conclusion}
 \label{cha:conclusion}
 
+\textit{In this chapter, ...}
+
+\section{Todos}
+
 \todo[inline]{FIXME}
 
-\lipsum[1-3]
+\lipsum[1-2]
 \todo{FIXME: remove this}
+
+\section*{Summary}
+
+\lipsum[2]
 
 \bibliographystyle{apalike}
 \bibliography{thesis}
