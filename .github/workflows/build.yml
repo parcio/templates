@@ -80,9 +80,9 @@ jobs:
           path: pages
       - name: Create thumbnails
         run: |
-          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/presentation.pdf[0]' pages/presentation.png
-          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/report.pdf[0]' pages/report.png
-          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/thesis.pdf[0]' pages/thesis.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 85 -background white -alpha remove 'pages/presentation.pdf[0]' pages/presentation.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 85 -background white -alpha remove 'pages/report.pdf[0]' pages/report.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 85 -background white -alpha remove 'pages/thesis.pdf[0]' pages/thesis.png
           touch pages/.nojekyll
       - name: Commit preview
         run: |
