@@ -59,6 +59,10 @@ jobs:
         run: |
           sudo apt update || true
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
+      - name: Allow PDF conversions
+        # FIXME Ubuntu has blocked PDF conversions in ImageMagick for security reasons
+        run: |
+          sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
       - name: Download presentation
         uses: actions/download-artifact@v2
         with:
