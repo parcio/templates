@@ -41,3 +41,50 @@ jobs:
         with:
           name: thesis
           path: thesis/thesis.pdf
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: write
+    if: ${{ github.ref == 'refs/heads/master' }}
+    timeout-minutes: 30
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: pages
+      - name: Install dependencies
+        run: |
+          sudo apt update || true
+          sudo apt --yes --no-install-recommends install ghostscript imagemagick
+      - name: Download presentation
+        uses: actions/download-artifact@v2
+        with:
+          name: presentation
+          path: pages
+      - name: Download report
+        uses: actions/download-artifact@v2
+        with:
+          name: report
+          path: pages
+      - name: Download thesis
+        uses: actions/download-artifact@v2
+        with:
+          name: thesis
+          path: pages
+      - name: Create thumbnails
+        run: |
+          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/presentation.pdf[0]' pages/presentation.png
+          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/report.pdf[0]' pages/report.png
+          convert -density 300 -thumbnail 1280x1280 -quality 85 -background white -alpha remove 'pages/thesis.pdf[0]' pages/thesis.png
+          touch pages/.nojekyll
+      - name: Commit preview
+        run: |
+          cd pages
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add --all .
+          git commit --amend --reset-author --message='Previews for ${{ github.sha }}'
+          git push --force
