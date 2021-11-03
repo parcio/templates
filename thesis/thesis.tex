@@ -30,7 +30,7 @@
 \usepackage{xcolor}
 
 \usepackage[hyphens]{url}
-\usepackage[hidelinks]{hyperref}
+\usepackage[hidelinks,pagebackref]{hyperref}
 \usepackage[capitalise,noabbrev]{cleveref}
 
 \usepackage[color=ovgu-orange]{todonotes}
@@ -44,6 +44,7 @@
 \definecolor{ovgu-lightgray}{HTML}{C0C0C0}
 \definecolor{ovgu-orange}{HTML}{F39100}
 \definecolor{ovgu-purple}{HTML}{7A003F}
+\definecolor{ovgu-red}{HTML}{D13F58}
 
 \lstset{
 	basicstyle=\ttfamily,
@@ -65,6 +66,17 @@
 	gobble=0,
 	captionpos=b,
 	abovecaptionskip=\medskipamount,
+}
+
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+\ifcase #1%
+{\color{ovgu-darkgray}(\color{ovgu-red}Not~cited\color{ovgu-darkgray})}%
+\or%
+{\color{ovgu-darkgray}(Cited~on~page~#2)}%
+\else%
+{\color{ovgu-darkgray}(Cited~on~pages~#2)}%
+\fi%
 }
 
 \titlehead{\centering\includegraphics[width=0.66\textwidth]{OVGU-INF}}
