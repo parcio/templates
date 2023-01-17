@@ -4,8 +4,10 @@
 	abstract,
 	bibliography=totoc,
 	chapterprefix,
+	headings=openright,
 	numbers=endperiod,
 	parskip=half,
+	twoside,
 ]{scrreprt}
 
 \usepackage[T1]{fontenc}
@@ -108,6 +110,9 @@ Dr. Evil
 
 \begin{document}
 
+% \frontmatter
+\pagenumbering{roman}
+
 \maketitle
 
 \begin{abstract}
@@ -118,6 +123,10 @@ It also contains \cref{cha:appendix}.
 \end{abstract}
 
 \tableofcontents
+
+% \mainmatter
+\cleardoubleoddpage
+\pagenumbering{arabic}
 
 \chapter{Introduction}
 \label{cha:introduction}
@@ -231,6 +240,8 @@ You can also refer to listings (\cref{lst:hello-world}).
 
 \bibliographystyle{apalike}
 \bibliography{thesis}
+
+% \backmatter
 
 \appendix
 
