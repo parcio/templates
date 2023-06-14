@@ -14,6 +14,9 @@ And optionally, if you want to save figures in your thesis in the `svg` format
 and automatically convert them to `pdf` for latex to use:
 - inkscape
 
+If you want to automatically convert LibreOffice graphs:
+- unoconv
+
 To build the template then simply run in the thesis directory in your terminal:
 
 ```sh
