@@ -10,17 +10,6 @@ Before building ensure that the following required software is installed on your
 - latexmk
 - make
 
-> TODO: Recheck packages for texlive etc..
-
-```sh
-# For ubuntu, debian, and others linux distribution who use `apt`
-$ apt update && apt install pdflatex latexmk make
-# For fedora, RHEL, ...
-$ dnf install pdflatex latexmk make
-# For arch linux
-$ pacman -S make pdflatex latexmk
-```
-
 And optionally, if you want to save figures in your thesis in the `svg` format
 and automatically convert them to `pdf` for latex to use:
 - inkscape

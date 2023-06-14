@@ -1,9 +1,9 @@
 PDF_INKSCAPE = $(subst .svg,.pdf,$(wildcard figures/*.svg))
 PDF_ODG	= $(subst .odg,.pdf,$(wildcard figures/*.odg))
-LATEXMK_AUX	= aux
-LATEXMK_OPT	= -pdf -auxdir=$(LATEXMK_AUX)
+LATEXMK_OUT	= out
+LATEXMK_OPT	= -pdf -auxdir=$(LATEXMK_OUT) -auxdir=$(LATEXMK_OUT)
 
-all: figures thesis.pdf 
+all: thesis.pdf 
 
 figures: $(PDF_INKSCAPE) $(PDF_ODG)
 
@@ -14,19 +14,14 @@ figures/%.pdf: figures/%.odg
 	unoconv --format svg $<
 	inkscape --export-filename=$@ --export-type=pdf $*.svg
 
-thesis.pdf: thesis.tex
+thesis.pdf: figures thesis.tex 
 	latexmk $(LATEXMK_OPT) thesis
-
-# Force a rebuild even if no .tex changes occurred, useful for updating figures
-# and such
-rebuild:
-	latexmk -g $(LATEXMK_OPT) thesis
 
 clean:
 	# Clear all outputs
-	@latexmk -auxdir=aux -C > /dev/null
+	@latexmk -auxdir=$(LATEXMK_OUT) -C > /dev/null
 	# Wipe auxiliary files
-	@rm -rf $(LATEXMK_AUX)
+	@rm -rf $(LATEXMK_OUT)
 	@rm -f $(PDF_GNUPLOT)
 	@rm -f $(PDF_INKSCAPE)
 	@rm -f $(PDF_ODG)
