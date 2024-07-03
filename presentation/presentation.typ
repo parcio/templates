@@ -29,3 +29,7 @@
 #slide[
     = A new slide appeared.
 ]
+
+#centered-slide[
+	You can also *center* slides.
+]
