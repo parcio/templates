@@ -103,3 +103,7 @@
   )
   logic.polylux-slide(body)
 }
+
+#let todo(txt: [TODO TODO]) = {
+  place(center + horizon, rotate(-35deg, text(size: 96pt, fill: luma(0, 30%), txt)))
+}

@@ -23,13 +23,27 @@
 )
 
 #focus-slide[
-    This is a local only slide test.
+    This is a focused slide.
 ]
 
 #slide[
-    = A new slide appeared.
+    = A new standard slide appeared.
 ]
 
 #centered-slide[
 	You can also *center* slides.
+]
+
+#slide[
+    #side-by-side[
+        #align(horizon)[
+            - This slide seems to be unfinished.
+            - ...
+            - ...
+        ]
+    ][
+        #figure(image("figures/OVGU-INF.svg", width: 100%), caption: [An example figure.])
+    ]
+
+    #todo()
 ]
