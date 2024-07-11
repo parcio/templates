@@ -57,7 +57,7 @@ jobs:
           wget https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz
           tar xf typst-x86_64-unknown-linux-musl.tar.xz
           sudo cp typst-x86_64-unknown-linux-musl/typst /usr/bin
-      - name: Build LaTeX presentation
+      - name: Build typst presentation
         run: |
           cd presentation/typst
           typst compile presentation.typ
