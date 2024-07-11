@@ -2,7 +2,7 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    name: Build
+    name: Build LaTeX
     runs-on: ubuntu-22.04
     timeout-minutes: 30
     steps:
@@ -14,15 +14,15 @@ jobs:
         run: |
           sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
-      - name: Build presentation
+      - name: Build LaTeX presentation
         run: |
-          cd presentation
+          cd presentation/latex
           latexmk -pdf presentation.tex
       - name: Upload presentation
         uses: actions/upload-artifact@v3
         with:
           name: presentation
-          path: presentation/presentation.pdf
+          path: presentation/latex/presentation.pdf
       - name: Build report
         run: |
           cd report
@@ -41,6 +41,26 @@ jobs:
         with:
           name: thesis
           path: thesis/thesis.pdf
+  build-typst:
+    name: Build Typst
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Install dependencies
+        run: |
+          sudo apt update || true
+          sudo apt --yes --no-install-recommends install wget xz-utils
+          wget https://github.com/typst/typst/releases/download/v0.11.1/typst-x86_64-unknown-linux-musl.tar.xz
+          tar xf typst-x86_64-unknown-linux-musl.tar.xz
+          sudo cp typst-x86_64-unknown-linux-musl/typst /usr/bin
+      - name: Build typst presentation
+        run: |
+          cd presentation/typst
+          typst compile presentation.typ
   publish:
     name: Publish
     needs: build
