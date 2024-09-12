@@ -1,94 +1,67 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  build:
-    name: Build
-    runs-on: ubuntu-22.04
+  latex:
+    name: LaTeX
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
+          show-progress: false
       - name: Install dependencies
         run: |
           sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
-      - name: Build presentation
-        run: |
-          cd presentation
-          latexmk -pdf presentation.tex
-      - name: Upload presentation
-        uses: actions/upload-artifact@v3
-        with:
-          name: presentation
-          path: presentation/presentation.pdf
-      - name: Build report
-        run: |
-          cd report
-          latexmk -pdf report.tex
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: report
-          path: report/report.pdf
-      - name: Build thesis
-        run: |
-          cd thesis
-          latexmk -pdf thesis.tex
-      - name: Upload thesis
-        uses: actions/upload-artifact@v3
-        with:
-          name: thesis
-          path: thesis/thesis.pdf
-  publish:
-    name: Publish
-    needs: build
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    if: ${{ github.ref == 'refs/heads/master' }}
-    timeout-minutes: 30
-    steps:
-      - name: Checkout gh-pages
-        uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-          path: pages
-      - name: Install dependencies
-        run: |
-          sudo apt update || true
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
       - name: Allow PDF conversions
         # FIXME Ubuntu has blocked PDF conversions in ImageMagick for security reasons
         run: |
           sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
-      - name: Download presentation
-        uses: actions/download-artifact@v3
-        with:
-          name: presentation
-          path: pages
-      - name: Download report
-        uses: actions/download-artifact@v3
-        with:
-          name: report
-          path: pages
-      - name: Download thesis
-        uses: actions/download-artifact@v3
-        with:
-          name: thesis
-          path: pages
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Build presentation
+        run: |
+          cd presentation
+          latexmk -pdf presentation.tex
+      - name: Build report
+        run: |
+          cd report
+          latexmk -pdf report.tex
+      - name: Build thesis
+        run: |
+          cd thesis
+          latexmk -pdf thesis.tex
       - name: Create thumbnails
         run: |
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'pages/presentation.pdf[0]' pages/presentation.png
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'pages/report.pdf[0]' pages/report.png
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'pages/thesis.pdf[0]' pages/thesis.png
-          touch pages/.nojekyll
-      - name: Commit preview
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'presentation/presentation.pdf[0]' presentation/presentation.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'report/report.pdf[0]' report/report.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'thesis/thesis.pdf[0]' thesis/thesis.png
+      - name: Prepare directory
         run: |
-          cd pages
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add --all .
-          git commit --amend --reset-author --message='Previews for ${{ github.sha }}'
-          git push --force
+          mkdir public
+          cp presentation/presentation.pdf presentation/presentation.png public/
+          cp report/report.pdf report/report.png public/
+          cp thesis/thesis.pdf thesis/thesis.png public/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+  deploy:
+    name: Deploy
+    needs: latex
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    if: ${{ github.ref == 'refs/heads/master' }}
+    permissions:
+      id-token: write
+      pages: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
