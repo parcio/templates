@@ -1,19 +1,49 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  latex:
-    name: LaTeX
+  prepare:
+    name: Checkout and Update Dependencies
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           persist-credentials: false
           show-progress: false
+      - name: Update dependencies
+        run: sudo apt update || true
+  typst:
+    name: Typst
+    needs: prepare
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install font dependencies
+        run: sudo apt --yes --no-install-recommends install fonts-libertinus fonts-inconsolata
+      - name: Install Typst via Community Action
+        uses: typst-community/setup-typst@v5
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Build thesis
+        run: typst compile thesis-typst/template/thesis.typ thesis-typst/thesis.pdf        
+      - name: Build presentation
+        run: typst compile presentation-typst/template/slides.typ presentation-typst/slides.pdf        
+      - name: Prepare directory
+        run: |
+          mkdir typst
+          cp thesis-typst/thesis.pdf typst/
+          cp presentation-typst/slides.pdf typst/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public/typst
+  latex:
+    name: LaTeX
+    needs: prepare
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
       - name: Install dependencies
         run: |
-          sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
       - name: Allow PDF conversions
@@ -24,34 +54,34 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build presentation
         run: |
-          cd presentation
+          cd presentation-latex
           latexmk -pdf presentation.tex
       - name: Build report
         run: |
-          cd report
+          cd report-latex
           latexmk -pdf report.tex
       - name: Build thesis
         run: |
-          cd thesis
+          cd thesis-latex
           latexmk -pdf thesis.tex
       - name: Create thumbnails
         run: |
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'presentation/presentation.pdf[0]' presentation/presentation.png
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'report/report.pdf[0]' report/report.png
-          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'thesis/thesis.pdf[0]' thesis/thesis.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'presentation-latex/presentation.pdf[0]' presentation-latex/presentation.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'report-latex/report.pdf[0]' report-latex/report.png
+          convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'thesis-latex/thesis.pdf[0]' thesis-latex/thesis.png
       - name: Prepare directory
         run: |
-          mkdir public
-          cp presentation/presentation.pdf presentation/presentation.png public/
-          cp report/report.pdf report/report.png public/
-          cp thesis/thesis.pdf thesis/thesis.png public/
+          mkdir latex
+          cp presentation-latex/presentation.pdf presentation-latex/presentation.png latex/
+          cp report-latex/report.pdf report-latex/report.png latex/
+          cp thesis-latex/thesis.pdf thesis-latex/thesis.png latex/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: public/latex
   deploy:
     name: Deploy
-    needs: latex
+    needs: [typst, latex]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     if: ${{ github.ref == 'refs/heads/master' }}
