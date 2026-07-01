@@ -1,8 +1,8 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  prepare:
-    name: Checkout and Update Dependencies
+  typst:
+    name: Typst
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
@@ -10,15 +10,9 @@ jobs:
         with:
           persist-credentials: false
           show-progress: false
-      - name: Update dependencies
-        run: sudo apt update || true
-  typst:
-    name: Typst
-    needs: prepare
-    runs-on: ubuntu-24.04
-    steps:
       - name: Install font dependencies
         run: |
+          sudo apt update || true
           sudo apt --yes --no-install-recommends install fonts-inconsolata
           wget https://github.com/alerque/libertinus/releases/download/v7.051/Libertinus-7.051.zip
           unzip -d fonts/ Libertinus-7.051.zip
@@ -41,12 +35,17 @@ jobs:
           path: public/typst
   latex:
     name: LaTeX
-    needs: prepare
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          show-progress: false
       - name: Install dependencies
         run: |
+          sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
       - name: Allow PDF conversions
