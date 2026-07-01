@@ -1,11 +1,11 @@
 [package]
 name = "parcio-slides"
-version = "0.1.2"
+version = "0.2.0"
 entrypoint = "src/parcio.typ"
-authors = ["Kevin Kulot <@xkevio>", "Luke <@AdmiralLuke>"]
+authors = ["Kevin Kulot <@xkevio>", "Luke <@AdmiralLuke>", "ParCIO"]
 license = "0BSD"
-description = "A simple polylux slide template based on the ParCIO working group at OvGU Magdeburg."
-repository = "https://github.com/xkevio/parcio-typst/"
+description = "A simple polylux slide template for the ParCIO working group at OvGU Magdeburg."
+repository = "https://github.com/parcio/templates"
 categories = ["presentation", "thesis"]
 keywords = ["presentation", "slides", "polylux", "thesis", "university", "OvGU", "Magdeburg", "Otto von Guericke Universität"]
 compiler = "0.13.0"
