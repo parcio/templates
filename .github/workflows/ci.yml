@@ -18,15 +18,18 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Install font dependencies
-        run: sudo apt --yes --no-install-recommends install fonts-libertinus fonts-inconsolata
+        run: |
+          sudo apt --yes --no-install-recommends install fonts-inconsolata
+          wget https://github.com/alerque/libertinus/releases/download/v7.051/Libertinus-7.051.zip
+          unzip -d fonts/ Libertinus-7.051.zip
       - name: Install Typst via Community Action
         uses: typst-community/setup-typst@v5
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      # - name: Configure Pages
+      #   uses: actions/configure-pages@v5
       - name: Build thesis
-        run: typst compile thesis-typst/template/thesis.typ thesis-typst/thesis.pdf        
+        run: typst compile thesis-typst/template/thesis.typ thesis-typst/thesis.pdf --font-path ./fonts
       - name: Build presentation
-        run: typst compile presentation-typst/template/slides.typ presentation-typst/slides.pdf        
+        run: typst compile presentation-typst/template/slides.typ presentation-typst/slides.pdf --font-path ./fonts        
       - name: Prepare directory
         run: |
           mkdir typst
@@ -50,8 +53,8 @@ jobs:
         # FIXME Ubuntu has blocked PDF conversions in ImageMagick for security reasons
         run: |
           sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      # - name: Configure Pages
+      #   uses: actions/configure-pages@v5
       - name: Build presentation
         run: |
           cd presentation-latex
