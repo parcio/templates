@@ -1,4 +1,4 @@
-#import "@local/parcio-thesis:0.3.0": section
+#import "@preview/parcio-thesis:0.3.0": section
 
 = Evaluation<eval>
 _In this chapter, ..._ \ \

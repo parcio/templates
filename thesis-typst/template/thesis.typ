@@ -1,4 +1,4 @@
-#import "@local/parcio-thesis:0.3.0": *
+#import "@preview/parcio-thesis:0.3.0": *
 #show: parcio.with(
   title: "Title", 
   author: (
