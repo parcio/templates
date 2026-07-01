@@ -26,9 +26,9 @@ jobs:
         run: typst compile presentation-typst/template/slides.typ presentation-typst/slides.pdf --font-path ./fonts        
       - name: Prepare directory
         run: |
-          mkdir typst
-          cp thesis-typst/thesis.pdf typst/
-          cp presentation-typst/slides.pdf typst/
+          mkdir -p public/typst
+          cp thesis-typst/thesis.pdf public/typst
+          cp presentation-typst/slides.pdf public/typst
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -73,10 +73,10 @@ jobs:
           convert -colorspace sRGB -density 300 -thumbnail 1920x1920 -quality 90 -background white -alpha remove -alpha off 'thesis-latex/thesis.pdf[0]' thesis-latex/thesis.png
       - name: Prepare directory
         run: |
-          mkdir latex
-          cp presentation-latex/presentation.pdf presentation-latex/presentation.png latex/
-          cp report-latex/report.pdf report-latex/report.png latex/
-          cp thesis-latex/thesis.pdf thesis-latex/thesis.png latex/
+          mkdir -p public/latex
+          cp presentation-latex/presentation.pdf presentation-latex/presentation.png public/latex
+          cp report-latex/report.pdf report-latex/report.png public/latex
+          cp thesis-latex/thesis.pdf thesis-latex/thesis.png public/latex
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
