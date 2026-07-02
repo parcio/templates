@@ -30,10 +30,10 @@
     columns: 2,
     label: <fig1>,
     figure(caption: "Left")[
-      #image(alt: "Blue OVGU logo", width: 75%, "ovgu.svg")
+      #image(alt: "Blue OVGU logo", width: 75%, "OVGU-INF.pdf")
     ],<fig1a>,
     figure(caption: "Right")[
-      #image(alt: "Blue OVGU logo", width: 75%, "ovgu.svg")
+      #image(alt: "Blue OVGU logo", width: 75%, "OVGU-INF.pdf")
     ],<fig1b>
   )
   \

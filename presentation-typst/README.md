@@ -36,7 +36,7 @@ To use this template, simply import it as shown below and define a `title-slide`
 ```
 
 These are the default options. We recommend leaving the show-rule as-is, such that you can just do `#show parcio-theme`, and
-using the provided OvGU logo for your title slide (if you initialized with `typst init`) by specifying `logo: image("ovgu.svg", width: 9.8cm)`
+using the provided OvGU logo for your title slide (if you initialized with `typst init`) by specifying `logo: image("OVGU-INF.pdf", width: 9.8cm)`
 on your title slide.
 
 Multiple authors can be displayed by providing an array of dictionaries instead, like so: 
