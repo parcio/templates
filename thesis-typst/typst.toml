@@ -10,8 +10,6 @@ categories = ["thesis", "report"]
 keywords = ["thesis", "master", "bachelor", "university", "OvGU", "Magdeburg", "Otto von Guericke Universität"]
 compiler = "0.14.0"
 exclude = [
-    "justfile",
-    "scripts",
     "thumbnails",
     "*.pdf",
 ]

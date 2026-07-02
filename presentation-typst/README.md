@@ -21,6 +21,7 @@ To use this template, simply import it as shown below and define a `title-slide`
 #show: parcio-theme.with(
   aspect-ratio: "16-9", // "16-9" and "4-3" are the only possible options.
   text-size: 20pt, // We recommend around this text size, as it fits nicely.
+  style-raw-blocks: true, // Enable or disable the built-in code block style.
 )
 
 #title-slide(

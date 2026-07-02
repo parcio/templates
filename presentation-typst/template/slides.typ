@@ -4,7 +4,7 @@
 #title-slide(
   title: "Title",
   subtitle: "Subtitle",
-  logo: image("ovgu.svg", width: 9.8cm),
+  logo: image("OVGU-INF.pdf", width: 9.8cm),
   extra: [
     #set text(0.825em)
     Faculty of Computer Science\
