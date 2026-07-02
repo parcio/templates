@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-A simple <a href="https://typst.app/universe/package/polylux/">polylux</a> slides template based on the ParCIO working group at Otto-von-Guericke University Magdeburg.
+A simple <a href="https://typst.app/universe/package/polylux/">polylux</a> slides template for the ParCIO working group at Otto-von-Guericke University Magdeburg.
 </p>
 
 ## Getting Started
@@ -82,13 +82,8 @@ Additionally, this template uses a different page counter than that of `polylux`
 
 ### Local Installation
 
-Following these steps will make the template available locally under the `@local` namespace. Requires ["Just - A Command Runner"](https://github.com/casey/just).
-
-```sh
-git clone git@github.com:xkevio/parcio-typst.git 
-cd parcio-typst/parcio-slides/
-just install
-```
+In order to make the template available locally under the `@local` namespace, refer to [Local Packages](https://github.com/typst/packages/#local-packages)
+or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
 
 ## Fonts and OvGU Corporate Design
 

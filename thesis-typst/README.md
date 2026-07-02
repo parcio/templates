@@ -6,7 +6,7 @@
     <img src="thumbnails/3.png" width=32%>
 </p>
 
-<p align="center">A simple thesis template based on the ParCIO working group at Otto-von-Guericke University Magdeburg.</p>
+<p align="center">A simple thesis template for the ParCIO working group at Otto-von-Guericke University Magdeburg.</p>
 
 ## Getting Started
 
@@ -27,13 +27,8 @@ To use this template, simply import it as shown below (more options under `Usage
 
 ### Local Installation
 
-Following these steps will make the template available locally under the `@local` namespace. Requires ["Just - A Command Runner"](https://github.com/casey/just).
-
-```sh
-git clone git@github.com:xkevio/parcio-typst.git 
-cd parcio-typst/parcio-thesis/
-just install
-```
+In order to make the template available locally under the `@local` namespace, refer to [Local Packages](https://github.com/typst/packages/#local-packages)
+or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
 
 ## Usage
 
