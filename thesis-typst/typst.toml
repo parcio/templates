@@ -8,11 +8,8 @@ description = "A simple thesis template for the ParCIO working group at OvGU Mag
 repository = "https://github.com/parcio/templates"
 categories = ["thesis", "report"]
 keywords = ["thesis", "master", "bachelor", "university", "OvGU", "Magdeburg", "Otto von Guericke Universität"]
-compiler = "0.14.0"
-exclude = [
-    "thumbnails",
-    "*.pdf",
-]
+compiler = "0.15.0"
+exclude = ["thumbnails"]
 
 [template]
 path = "template"

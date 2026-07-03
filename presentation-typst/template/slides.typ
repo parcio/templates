@@ -1,10 +1,10 @@
-#import "@preview/parcio-slides:0.1.2": *
+#import "@local/parcio-slides:0.2.0": *
 #show: parcio-theme
 
 #title-slide(
   title: "Title",
   subtitle: "Subtitle",
-  logo: image("OVGU-INF.pdf", width: 9.8cm),
+  logo: image(ovgu-fin-logo, width: 9.8cm),
   extra: [
     #set text(0.825em)
     Faculty of Computer Science\
@@ -30,10 +30,10 @@
     columns: 2,
     label: <fig1>,
     figure(caption: "Left")[
-      #image(alt: "Blue OVGU logo", width: 75%, "OVGU-INF.pdf")
+      #image(alt: "Blue OVGU logo", width: 75%, ovgu-fin-logo)
     ],<fig1a>,
     figure(caption: "Right")[
-      #image(alt: "Blue OVGU logo", width: 75%, "OVGU-INF.pdf")
+      #image(alt: "Blue OVGU logo", width: 75%, ovgu-fin-logo)
     ],<fig1b>
   )
   \

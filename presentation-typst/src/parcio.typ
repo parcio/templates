@@ -6,6 +6,7 @@
 #let m-lighter-brown = rgb("#d6c6b7")
 #let m-extra-light-gray = white.darken(2%)
 
+#let ovgu-fin-logo = path("OVGU-INF.pdf")
 #let ovgu-red = rgb("#D13F58")
 #let ovgu-purple = rgb("#7A003F")
 #let ovgu-blue = rgb("#0068B4")

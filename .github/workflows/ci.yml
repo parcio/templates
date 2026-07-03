@@ -20,6 +20,12 @@ jobs:
         uses: typst-community/setup-typst@v5
       # - name: Configure Pages
       #   uses: actions/configure-pages@v5
+      - name: Copy templates into local namespace
+        run: |
+          THESIS_VERSION="$(grep version thesis-typst/typst.toml | grep -e '\d\+.\d\+.\d\+' -o)"
+          SLIDES_VERSION="$(grep version presentation-typst/typst.toml | grep -e '\d\+.\d\+.\d\+' -o)"
+          cp thesis-typst/* ~/.local/share/typst/packages/local/parcio-thesis/$THESIS_VERSION
+          cp presentation-typst/* ~/.local/share/typst/packages/local/parcio-slides/$SLIDES_VERSION
       - name: Build thesis
         run: typst compile thesis-typst/template/thesis.typ thesis-typst/thesis.pdf --font-path ./fonts
       - name: Build presentation

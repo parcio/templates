@@ -1,4 +1,4 @@
-#import "@preview/parcio-thesis:0.3.0": subfigure, section
+#import "@local/parcio-thesis:0.3.1": subfigure, section, ovgu-fin-logo
 
 = Introduction<intro>
 
@@ -12,10 +12,10 @@ _In this chapter, #lorem(50)_
   columns: 2, 
   label: <fig:main>,
   figure(caption: "Left")[
-    #image(width: 75%, "ovgu-fin.svg")
+    #image(ovgu-fin-logo, width: 75%)
   ], <fig:main-a>,
   figure(caption: "Right")[
-    #image(width: 75%, "ovgu-fin.svg")
+    #image(ovgu-fin-logo, width: 75%)
   ], <fig:main-b>
 )
 
