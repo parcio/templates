@@ -22,8 +22,8 @@ jobs:
       #   uses: actions/configure-pages@v5
       - name: Copy templates into local namespace
         run: |
-          THESIS_VERSION="$(grep version thesis-typst/typst.toml | grep -e '\d\+.\d\+.\d\+' -o)"
-          SLIDES_VERSION="$(grep version presentation-typst/typst.toml | grep -e '\d\+.\d\+.\d\+' -o)"
+          THESIS_VERSION="$(grep version thesis-typst/typst.toml | grep -E '[0-9]+.[0-9]+.[0-9]+' -o)"
+          SLIDES_VERSION="$(grep version presentation-typst/typst.toml | grep -E '[0-9]+.[0-9]+.[0-9]+' -o)"
           mkdir -p ~/.local/share/typst/packages/local/parcio-thesis/$THESIS_VERSION && cp thesis-typst/* $_
           mkdir -p ~/.local/share/typst/packages/local/parcio-slides/$SLIDES_VERSION && cp presentation-typst/* $_
       - name: Build thesis
