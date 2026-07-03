@@ -83,8 +83,7 @@ Additionally, this template uses a different page counter than that of `polylux`
 
 ### Local Installation
 
-In order to make the template available locally under the `@local` namespace, refer to [Local Packages](https://github.com/typst/packages/#local-packages)
-or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
+In order to make the template available locally under the `@local` namespace, clone this repository and refer to [Local Packages](https://github.com/typst/packages/#local-packages) or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
 
 ## Fonts and OvGU Corporate Design
 

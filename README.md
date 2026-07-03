@@ -5,7 +5,7 @@
 This repository contains LaTeX & Typst templates for presentations, reports, theses and more.
 
 > [!NOTE]
-> The Typst templates can also be found in the Typst Universe ([parcio-slides](https://typst.app/universe/package/parcio-slides), [parcio-thesis](https://typst.app/universe/package/parcio-thesis)) and thus imported directly from there.
+> The Typst templates can also be found in the Typst Universe ([parcio-slides](https://typst.app/universe/package/parcio-slides), [parcio-thesis](https://typst.app/universe/package/parcio-thesis)) and thus imported directly from there via the `@preview` namespace.
 
 Please note that the [0BSD license](LICENSE) does not apply to the OVGU logo (`OVGU-INF.pdf`).
 Please see [OVGU's Corporate Design](https://www.cd.ovgu.de/) for more information.
