@@ -31,7 +31,7 @@
 
 #empty-page
 
-#bibliography("bibliography/refs.bib", style: "bibliography/apalike.csl")
+#bibliography("bibliography/thesis.bib", style: "bibliography/apalike.csl")
 
 #empty-page
 

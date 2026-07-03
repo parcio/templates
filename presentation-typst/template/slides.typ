@@ -116,7 +116,7 @@
 ]
 
 #bib-slide(bibliography(
-  "bibliography/report.bib",
+  "bibliography/presentation.bib",
    title: none,
    style: "bibliography/apalike.csl"
 ))

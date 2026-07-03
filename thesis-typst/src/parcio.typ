@@ -31,7 +31,7 @@
   lang: "en",
   /// The logo(s) of your faculty or institution.
   /// -> content
-  header-logo: image("logos/OVGU-INF.pdf", width: 66%),
+  header-logo: image("figures/OVGU-INF.pdf", width: 66%),
   /// Custom translations for certain keywords in TOML format.
   /// -> dictionary
   translations: toml("translations.toml"),

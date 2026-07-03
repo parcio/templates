@@ -1,7 +1,7 @@
 #import "@preview/drafting:0.2.2": margin-note, set-page-properties
 #import "@preview/subpar:0.2.2"
 
-#let ovgu-fin-logo = path("logos/OVGU-INF.pdf")
+#let ovgu-fin-logo = path("figures/OVGU-INF.pdf")
 #let ovgu-blue = rgb("#0068B4")
 #let ovgu-darkgray = rgb("#606060")
 #let ovgu-lightgray = rgb("#C0C0C0")
