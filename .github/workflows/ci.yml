@@ -18,8 +18,8 @@ jobs:
           unzip -d fonts/ Libertinus-7.051.zip
       - name: Install Typst via Community Action
         uses: typst-community/setup-typst@v5
-      # - name: Configure Pages
-      #   uses: actions/configure-pages@v5
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Copy templates into local namespace
         run: |
           THESIS_VERSION="$(grep version thesis-typst/typst.toml | grep -E '[0-9]+.[0-9]+.[0-9]+' -o)"
@@ -36,9 +36,12 @@ jobs:
           cp thesis-typst/thesis.pdf public/typst
           cp presentation-typst/slides.pdf public/typst
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
-          path: public/typst
+          name: typst-artifact
+          path: public
+          retention-days: 1
+          
   latex:
     name: LaTeX
     runs-on: ubuntu-24.04
@@ -58,8 +61,8 @@ jobs:
         # FIXME Ubuntu has blocked PDF conversions in ImageMagick for security reasons
         run: |
           sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
-      # - name: Configure Pages
-      #   uses: actions/configure-pages@v5
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Build presentation
         run: |
           cd presentation-latex
@@ -84,12 +87,30 @@ jobs:
           cp report-latex/report.pdf report-latex/report.png public/latex
           cp thesis-latex/thesis.pdf thesis-latex/thesis.png public/latex
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
-          path: public/latex
+          name: latex-artifact
+          path: public
+          retention-days: 1
+
+  combine:
+    name: Combine Artifacts
+    needs: [typst, latex]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: public
+          merge-multiple: true
+      - name: Upload combined artifacts
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: public
+          
   deploy:
     name: Deploy
-    needs: [typst, latex]
+    needs: combine
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     if: ${{ github.ref == 'refs/heads/master' }}
