@@ -17,4 +17,4 @@ install-local:
 # Create thumbnails for README and thumbnail folder
 make-thumbnails: install-local
     typst compile template/thesis.typ -f png --pages 1,5,7 --ppi 300 thumbnails/p-{0p}.png
-    
+    zopflipng -m thumbnails/*.png

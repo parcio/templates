@@ -17,4 +17,4 @@ install-local:
 # Create thumbnails for README and thumbnail folder
 make-thumbnails: install-local
     typst compile template/slides.typ -f png --pages 1,2,3,4 --ppi 300 thumbnails/p-{0p}.png
-    
+    zopflipng -m thumbnails/*.png
