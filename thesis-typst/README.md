@@ -1,9 +1,9 @@
 # The `parcio-thesis` Template
 
 <p align="center">
-    <img src="thumbnails/1.png" width=32%>&nbsp;
-    <img src="thumbnails/2.png" width=32%>&nbsp;
-    <img src="thumbnails/3.png" width=32%>
+    <img src="thumbnails/p-01.png" width=32%>&nbsp;
+    <img src="thumbnails/p-05.png" width=32%>&nbsp;
+    <img src="thumbnails/p-07.png" width=32%>
 </p>
 
 <p align="center">A simple thesis template for the ParCIO working group at Otto-von-Guericke University Magdeburg.</p>
@@ -28,6 +28,7 @@ To use this template, simply import it as shown below (more options under `Usage
 ### Local Installation
 
 In order to make the template available locally under the `@local` namespace, clone this repository and refer to [Local Packages](https://github.com/typst/packages/#local-packages) or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
+You can also use the provided [`justfile`](./justfile) to move this template to the correct location as well as generate up-to-date thumbnails for publishing.
 
 ## Usage
 
@@ -145,4 +146,4 @@ This template requires these three fonts to be installed on your system[^1]:
 
 We bundle the default "Faculty of Computer Science" head banner and use it as the `header-logo` (the 0-BSD license does not apply to this file). You can find yours at: https://www.cd.ovgu.de/Fakult%C3%A4ten.html. These might include additional layers (_optional content groups_) which should be removed with tools such as Inkscape.
 
-[^1]: Typst should already provide the Libertinus font family by default as it is their standard font.
+[^1]: Typst should already provide the Libertinus Serif font by default as it is their standard font.

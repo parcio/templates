@@ -1,10 +1,10 @@
 # The `parcio-slides` Polylux Template
 
 <p align="center">
-    <img src="thumbnails/cover.png" width=40%>
-    <img src="thumbnails/main-02.png" width=40%><br/>
-    <img src="thumbnails/main-03.png" width=40%>
-    <img src="thumbnails/main-04.png" width=40%>
+    <img src="thumbnails/p-01.png" width=40%>
+    <img src="thumbnails/p-02.png" width=40%><br/>
+    <img src="thumbnails/p-03.png" width=40%>
+    <img src="thumbnails/p-04.png" width=40%>
 </p>
 
 <p align="center">
@@ -84,6 +84,7 @@ Additionally, this template uses a different page counter than that of `polylux`
 ### Local Installation
 
 In order to make the template available locally under the `@local` namespace, clone this repository and refer to [Local Packages](https://github.com/typst/packages/#local-packages) or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
+You can also use the provided [`justfile`](./justfile) to move this template to the correct location as well as generate up-to-date thumbnails for publishing.
 
 ## Fonts and OvGU Corporate Design
 
