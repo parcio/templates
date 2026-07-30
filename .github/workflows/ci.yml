@@ -11,10 +11,10 @@ jobs:
         with:
           persist-credentials: false
           show-progress: false
-      - name: Install font dependencies
+      - name: Install dependencies
         run: |
           sudo apt update || true
-          sudo apt --yes --no-install-recommends install fonts-inconsolata
+          sudo apt --yes --no-install-recommends install fonts-inconsolata zopfli
           wget https://github.com/alerque/libertinus/releases/download/v7.051/Libertinus-7.051.zip
           unzip -d fonts/ Libertinus-7.051.zip
       - name: Install Typst via Release Download
@@ -32,13 +32,25 @@ jobs:
           mkdir -p ~/.local/share/typst/packages/local/parcio-slides/$SLIDES_VERSION && cp -r presentation-typst/* $_
       - name: Build thesis
         run: typst compile thesis-typst/template/thesis.typ thesis-typst/thesis.pdf --font-path ./fonts
+      - name: Create thesis thumbnails
+        run: |
+          mkdir thesis-typst/thumbnails
+          typst compile thesis-typst/template/thesis.typ -f png --pages 1,5,7 --ppi 300 thesis-typst/thumbnails/p-{0p}.png --font-path ./fonts
+          zopflipng -m thesis-typst/thumbnails/*.png
       - name: Build presentation
         run: typst compile presentation-typst/template/slides.typ presentation-typst/slides.pdf --font-path ./fonts
+      - name: Create presentation thumbnails
+        run: |
+          mkdir presentation-typst/thumbnails
+          typst compile presentation-typst/template/slides.typ -f png --pages 1,2,3,4 --ppi 300 presentation-typst/thumbnails/p-{0p}.png --font-path ./fonts
+          zopflipng -m presentation-typst/thumbnails/*.png
       - name: Prepare directory
         run: |
           mkdir -p public/typst
-          cp thesis-typst/thesis.pdf public/typst
-          cp presentation-typst/slides.pdf public/typst
+          cp thesis-typst/thesis.pdf public/typst/
+          cp -r thesis-typst/thumbnails public/typst/thesis-thumbnails
+          cp presentation-typst/slides.pdf public/typst/
+          cp -r presentation-typst/thumbnails public/typst/slides-thumbnails
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:

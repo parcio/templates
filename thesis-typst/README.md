@@ -1,9 +1,9 @@
 # The `parcio-thesis` Template
 
 <p align="center">
-    <img src="thumbnails/p-01.png" width=32%>&nbsp;
-    <img src="thumbnails/p-05.png" width=32%>&nbsp;
-    <img src="thumbnails/p-07.png" width=32%>
+    <img src="https://parcio.github.io/templates/typst/thesis-thumbnails/p-01.png" width=32% alt="An exemplary thesis title page with default metadata.">&nbsp;
+    <img src="https://parcio.github.io/templates/typst/thesis-thumbnails/p-05.png" width=32% alt="A page showing a simple table of contents for a thesis.">&nbsp;
+    <img src="https://parcio.github.io/templates/typst/thesis-thumbnails/p-07.png" width=32% alt="A chapter page with chapter headings and section headings, as well as paragraphs containing blind text and subfigures.">
 </p>
 
 <p align="center">A simple thesis template for the ParCIO working group at Otto-von-Guericke University Magdeburg.</p>
@@ -13,7 +13,7 @@
 To use this template, simply import it as shown below (more options under `Usage`):
 
 ```typ
-#import "@preview/parcio-thesis:0.3.0": *
+#import "@preview/parcio-thesis:0.3.1": *
 
 #show: parcio.with(
   title: "My great thesis",
@@ -35,7 +35,7 @@ You can also use the provided [`justfile`](./justfile) to move this template to 
 See here for **all** possible arguments (and their default values) as well as utility functions:
 
 ```typ
-#import "@preview/parcio-thesis:0.3.0": *
+#import "@preview/parcio-thesis:0.3.1": *
 
 #show: parcio.with(
   /// The title of your thesis.
@@ -67,7 +67,7 @@ See here for **all** possible arguments (and their default values) as well as ut
   lang: "en",
   /// The logo(s) of your faculty or institution.
   /// -> content
-  header-logo: image("logos/OVGU-INF.pdf", width: 66%),
+  header-logo: image(ovgu-fin-logo, width: 66%),
   /// Custom translations for certain keywords in TOML format.
   /// -> dictionary
   translations: toml("translations.toml")
@@ -85,7 +85,7 @@ These could be useful while writing your thesis!
 
 ```typ
 // A TODO marker. (inline: false -> margin note, inline: true -> box).
-#let todo(inline: false, body)
+#let todo(inline: false, body) = { /* ... */ }
 
 // Like \section* in LaTeX. (unnumbered level 2 heading, not in ToC).
 #let section = heading.with(level: 2, outlined: false, numbering: none)
@@ -97,13 +97,13 @@ These could be useful while writing your thesis!
 #let empty-page = page([], footer: [])
 
 // Subfigures (see chapters/introduction for syntax).
-#let subfigure(..)
+#let subfigure(..) = {}
 
 // A ParCIO-like table with a design taken from the LaTeX template.
-#let parcio-table(..args)
+#let parcio-table(..args) = {}
 
 // Nicer handling of (multiple) appendices. Specify `reset: true` with your first appendix to reset the heading counter!
-#let appendix(reset: false, label: none, body)
+#let appendix(reset: false, label: none, body) = {}
 ```
 
 ### Translations
@@ -136,7 +136,7 @@ date-format = "[day]. [month repr:long] [year]"
 months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 ```
 
-## Fonts and OvGU Corporate Design
+## Fonts and OVGU Corporate Design
 
 This template requires these three fonts to be installed on your system[^1]:
 

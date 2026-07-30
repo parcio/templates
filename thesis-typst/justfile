@@ -1,6 +1,6 @@
 set default-list := true
 
-VERSION := `grep version typst.toml | grep -E '[0-9]+.[0-9]+.[0-9]+' -o`
+VERSION := `grep -oP '(?<=version = ")[^"]+' typst.toml`
 DATA_DIR := if os() == "windows" {
      "%APPDATA%"
 } else if os() == "macos" {
@@ -18,3 +18,35 @@ install-local:
 make-thumbnails: install-local
     typst compile template/thesis.typ -f png --pages 1,5,7 --ppi 300 thumbnails/p-{0p}.png
     zopflipng -m thumbnails/*.png
+
+# Bump version to NEW_VERSION
+bump-version NEW_VERSION:
+    @echo Bumping from version {{VERSION}} to {{NEW_VERSION}}
+    sed -i "$(printf 's/version = "%s"/version = "%s"/g' "{{VERSION}}" "{{NEW_VERSION}}")" typst.toml
+    sed -i "$(printf 's/parcio-thesis:%s/parcio-thesis:%s/g' "{{VERSION}}" "{{NEW_VERSION}}")" README.md
+    find . -iname '*.typ' -exec sed -i "$(printf 's/parcio-thesis:%s/parcio-thesis:%s/g' "{{VERSION}}" "{{NEW_VERSION}}")" "{}" \;
+
+# Package into typst-packages directory
+# Steps to update package:
+#   $ git clone --depth 1 --no-checkout --filter="tree:0" git@github.com:parcio/typst-packages
+#   $ cd typst-packages
+#   $ git sparse-checkout init
+#   $ git sparse-checkout set packages/preview/parcio-thesis packages/preview/parcio-slides
+#   $ git remote add upstream git@github.com:typst/packages
+#   $ git config remote.upstream.partialclonefilter tree:0
+#   $ git checkout main
+#   $ just package /path/to/typst-packages
+# Finally, create a PR at https://github.com/typst/packages
+package TYPST_PACKAGES_REPO_ROOT: make-thumbnails
+    [ -d "{{TYPST_PACKAGES_REPO_ROOT}}" ]
+    [ -d "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis" ]
+    @echo Packaging to "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}"
+    [ -d "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}" ] && rm -r "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}"
+    mkdir "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}"
+    git ls-files | grep -v 'justfile' | while read -r f ; do \
+        cp --parents "$f" "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}"/ ; \
+    done
+    cd "{{TYPST_PACKAGES_REPO_ROOT}}/packages/preview/parcio-thesis/{{VERSION}}" && \
+    find . -iname '*.typ' -exec sed -i 's/@local/@preview/g' "{}" \; && \
+    sed -i "$(printf 's+./justfile+https://github.com/parcio/templates/blob/%s/thesis-typst/justfile+g' "$(git rev-parse HEAD)");s+https://parcio.github.io/templates/typst/thesis-thumbnails/+thumbnails/+g" README.md && \
+    typst-package-check check

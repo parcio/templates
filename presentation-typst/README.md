@@ -1,10 +1,10 @@
 # The `parcio-slides` Polylux Template
 
 <p align="center">
-    <img src="thumbnails/p-01.png" width=40%>
-    <img src="thumbnails/p-02.png" width=40%><br/>
-    <img src="thumbnails/p-03.png" width=40%>
-    <img src="thumbnails/p-04.png" width=40%>
+    <img src="https://parcio.github.io/templates/typst/slides-thumbnails/p-01.png" width=40% alt="An exemplary title slide with a blue university logo.">
+    <img src="https://parcio.github.io/templates/typst/slides-thumbnails/p-02.png" width=40% alt="An outline slide listing: Introduction, Background, Evaluation, Conclusion."><br/>
+    <img src="https://parcio.github.io/templates/typst/slides-thumbnails/p-03.png" width=40% alt="An example slide with some text on it.">
+    <img src="https://parcio.github.io/templates/typst/slides-thumbnails/p-04.png" width=40% alt="An example slide showcasing subfigures.">
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@ A simple <a href="https://typst.app/universe/package/polylux/">polylux</a> slide
 To use this template, simply import it as shown below and define a `title-slide` with the following possible options:
 
 ```typ
-#import "@preview/parcio-slides:0.1.2": *
+#import "@preview/parcio-slides:0.2.0": *
 
 #show: parcio-theme.with(
   aspect-ratio: "16-9", // "16-9" and "4-3" are the only possible options.
@@ -36,7 +36,7 @@ To use this template, simply import it as shown below and define a `title-slide`
 ```
 
 These are the default options. We recommend leaving the show-rule as-is, such that you can just do `#show parcio-theme`, and
-using the provided OvGU logo for your title slide (if you initialized with `typst init`) by specifying `logo: image("OVGU-INF.pdf", width: 9.8cm)`
+using the provided OVGU logo for your title slide (if you initialized with `typst init`) by specifying `logo: image(ovgu-fin-logo, width: 9.8cm)`
 on your title slide.
 
 Multiple authors can be displayed by providing an array of dictionaries instead, like so: 
@@ -86,7 +86,7 @@ Additionally, this template uses a different page counter than that of `polylux`
 In order to make the template available locally under the `@local` namespace, clone this repository and refer to [Local Packages](https://github.com/typst/packages/#local-packages) or use the [Unofficial Typst Package Manager](https://github.com/typst-community/utpm).
 You can also use the provided [`justfile`](./justfile) to move this template to the correct location as well as generate up-to-date thumbnails for publishing.
 
-## Fonts and OvGU Corporate Design
+## Fonts and OVGU Corporate Design
 
 This template requires these two fonts to be installed on your system:
 

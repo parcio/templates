@@ -82,7 +82,7 @@
   body
 }
 
-// Declare your title slide! OvGU logo to the right.
+// Declare your title slide! OVGU logo to the right.
 //
 // - title: Your presentation title.
 // - author: Consists of author.name and author.mail.

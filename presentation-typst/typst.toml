@@ -4,10 +4,10 @@ version = "0.2.0"
 entrypoint = "src/parcio.typ"
 authors = ["Kevin Kulot <@xkevio>", "Luke <@AdmiralLuke>", "Ruben Felgenhauer <@felsenhower>", "ParCIO"]
 license = "0BSD"
-description = "A simple polylux slide template for the ParCIO working group at OvGU Magdeburg."
+description = "A simple polylux slide template for the ParCIO working group at OVGU Magdeburg."
 repository = "https://github.com/parcio/templates"
 categories = ["presentation", "thesis"]
-keywords = ["presentation", "slides", "polylux", "thesis", "university", "OvGU", "Magdeburg", "Otto von Guericke Universität"]
+keywords = ["presentation", "slides", "polylux", "thesis", "university", "OVGU", "Magdeburg", "Otto-von-Guericke-Universität"]
 compiler = "0.15.0"
 exclude = ["thumbnails"]
 
