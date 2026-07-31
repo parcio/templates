@@ -32,12 +32,9 @@
 \usepackage[margin=2.5cm,footskip=36pt]{geometry}
 \usepackage{graphicx}
 \usepackage[htt]{hyphenat}
-\usepackage{listings}
 \usepackage{microtype}
+\usepackage{minted}
 \usepackage{subcaption}
-% Required for listings's upquote
-\usepackage{textcomp}
-\usepackage{upquote}
 \usepackage{xcolor}
 
 \usepackage[hyphens]{url}
@@ -50,34 +47,26 @@
 
 \graphicspath{{./figures/}}
 
+\definecolor{ovgu-brightblue}{HTML}{009EE3}
 \definecolor{ovgu-blue}{HTML}{0068B4}
 \definecolor{ovgu-darkgray}{HTML}{606060}
 \definecolor{ovgu-lightgray}{HTML}{C0C0C0}
+\definecolor{ovgu-green}{HTML}{94C12D}
 \definecolor{ovgu-orange}{HTML}{F39100}
 \definecolor{ovgu-purple}{HTML}{7A003F}
 \definecolor{ovgu-red}{HTML}{D13F58}
 
-\lstset{
-	basicstyle=\ttfamily,
-	commentstyle=\color{ovgu-darkgray},
-	keywordstyle=\color{ovgu-blue},
-	numberstyle=\ttfamily\color{ovgu-darkgray},
-	stringstyle=\color{ovgu-purple},
-	rulecolor=\color{ovgu-lightgray},
+\setminted{
+	autogobble=true,
+	breaklines=true,
 	frame=single,
 	numbers=left,
-	language=C,
-	breaklines=true,
-	breakatwhitespace=true,
-	postbreak=\hbox{$\hookrightarrow$ },
-	showlines=true,
-	showstringspaces=false,
-	upquote=true,
+	rulecolor=\color{ovgu-lightgray},
 	tabsize=4,
-	gobble=0,
-	captionpos=b,
-	abovecaptionskip=\medskipamount,
+	vspace=0pt,
 }
+
+\renewcommand{\theFancyVerbLine}{\ttfamily\textcolor{ovgu-darkgray}{\arabic{FancyVerbLine}}}
 
 \renewcommand*{\backref}[1]{}
 \renewcommand*{\backrefalt}[4]{%
@@ -175,7 +164,8 @@ You can also refer to tables (\cref{tab:table}).
 \section{Evaluation}
 \label{sec:evaluation}
 
-\begin{lstlisting}[caption=Caption,label=lst:hello-world]
+\begin{listing}[ht]
+\begin{minted}{c}
 printf("Hello world!\n");
 
 // Comment
@@ -184,7 +174,10 @@ for (int i = 0; i < m; i++) {
 		sum += 'a';
 	}
 }
-\end{lstlisting}
+\end{minted}
+\caption{Caption}
+\label{lst:hello-world}
+\end{listing}
 
 You can also refer to listings (\cref{lst:hello-world}).
 

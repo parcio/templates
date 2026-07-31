@@ -30,12 +30,9 @@
 \usepackage{appendixnumberbeamer}
 \usepackage{graphicx}
 \usepackage[htt]{hyphenat}
-\usepackage{listings}
 \usepackage{microtype}
+\usepackage{minted}
 \usepackage{subcaption}
-% Required for listings's upquote
-\usepackage{textcomp}
-\usepackage{upquote}
 \usepackage{xcolor}
 
 \usepackage[capitalise,noabbrev]{cleveref}
@@ -46,27 +43,17 @@
 
 \graphicspath{{./figures/}}
 
-\lstset{
-	basicstyle=\ttfamily\small,
-	commentstyle=\color{ovgu-darkgray},
-	keywordstyle=\color{ovgu-blue},
-	numberstyle=\ttfamily\small\color{ovgu-darkgray},
-	stringstyle=\color{ovgu-purple},
-	rulecolor=\color{ovgu-lightgray},
+\setminted{
+	autogobble=true,
+	breaklines=true,
 	frame=single,
 	numbers=left,
-	language=C,
-	breaklines=true,
-	breakatwhitespace=true,
-	postbreak=\hbox{$\hookrightarrow$ },
-	showlines=true,
-	showstringspaces=false,
-	upquote=true,
+	rulecolor=\color{ovgu-lightgray},
 	tabsize=4,
-	gobble=4,
-	captionpos=b,
-	abovecaptionskip=\medskipamount,
+	vspace=0pt,
 }
+
+\renewcommand{\theFancyVerbLine}{\ttfamily\textcolor{ovgu-darkgray}{\arabic{FancyVerbLine}}}
 
 \setuptodonotes{
 	inline,
@@ -119,7 +106,7 @@ Otto von Guericke University Magdeburg
 \begin{frame}
 	\navframetitle{Figures}
 
-	\begin{figure}[ht]
+	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.45\textwidth}
 			\centering
@@ -156,7 +143,7 @@ Otto von Guericke University Magdeburg
 \begin{frame}
 	\navframetitle{Tables}
 
-	\begin{table}[ht]
+	\begin{table}[H]
 		\centering
 		\begin{tabular}{|l|c|r|}
 			\hline
@@ -190,7 +177,8 @@ Otto von Guericke University Magdeburg
 \begin{frame}[fragile]
 	\navframetitle{Listings}
 
-	\begin{lstlisting}[caption=Caption,label=lst:hello-world]
+	\begin{listing}[H]
+	\begin{minted}{c}
 	printf("Hello world!\n");
 
 	// Comment
@@ -199,7 +187,10 @@ Otto von Guericke University Magdeburg
 			sum += 'a';
 		}
 	}
-	\end{lstlisting}
+	\end{minted}
+	\caption{Caption}
+	\label{lst:hello-world}
+	\end{listing}
 
 	\begin{itemize}
 		\item You can also refer to listings (\cref{lst:hello-world})
@@ -216,7 +207,7 @@ Otto von Guericke University Magdeburg
 			\end{itemize}
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			\begin{lstlisting}[gobble=12]
+			\begin{minted}{c}
 			printf("Hello world!\n");
 
 			// Comment
@@ -225,7 +216,7 @@ Otto von Guericke University Magdeburg
 					sum += 'a';
 				}
 			}
-			\end{lstlisting}
+			\end{minted}
 		\end{column}
 	\end{columns}
 \end{frame}
