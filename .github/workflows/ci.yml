@@ -72,6 +72,13 @@ jobs:
           sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
+      # FIXME https://github.com/gpoore/minted/issues/463
+      - name: Fix minted
+        run: |
+          wget https://github.com/gpoore/minted/commit/2a7b3a48e47b834bbc4a616679a0ef9710896a16.patch
+          unzip /usr/share/texlive/texmf-dist/scripts/minted/latexminted-0.6.0-py3-none-any.whl latexminted/cmdline.py
+          git apply --verbose -p2 --ignore-whitespace --include=latexminted/cmdline.py 2a7b3a48e47b834bbc4a616679a0ef9710896a16.patch
+          sudo zip /usr/share/texlive/texmf-dist/scripts/minted/latexminted-0.6.0-py3-none-any.whl latexminted/cmdline.py
       - name: Configure Pages
         uses: actions/configure-pages@v6
       - name: Build presentation
