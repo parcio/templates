@@ -72,10 +72,6 @@ jobs:
           sudo apt update || true
           sudo apt --yes --no-install-recommends install texlive texlive-fonts-extra texlive-lang-german texlive-latex-extra texlive-plain-generic latexmk
           sudo apt --yes --no-install-recommends install ghostscript imagemagick
-      - name: Allow PDF conversions
-        # FIXME Ubuntu has blocked PDF conversions in ImageMagick for security reasons
-        run: |
-          sudo sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
       - name: Configure Pages
         uses: actions/configure-pages@v6
       - name: Build presentation
