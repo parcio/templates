@@ -11,7 +11,9 @@
 % OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 % PERFORMANCE OF THIS SOFTWARE.
 
-\DocumentMetadata{
+% FIXME \DocumentMetadata subtly breaks KOMA-Script
+\RequirePackage{pdfmanagement}
+\SetKeys[document/metadata]{
 	pdfversion=1.7,
 	pdfstandard=A-2u,
 }

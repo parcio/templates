@@ -123,7 +123,7 @@ jobs:
           merge-multiple: true
       - name: Validate PDF/A
         run: |
-          docker run --rm --volume "${PWD}/public:/data" docker.io/verapdf/cli:latest --flavour 2u --format text --verbose /data/latex/report.pdf /data/latex/thesis.pdf
+          docker run --rm --volume "${PWD}/public:/data" docker.io/verapdf/cli:latest --flavour 2u --format text --verbose /data/latex/presentation.pdf /data/latex/report.pdf /data/latex/thesis.pdf
   combine:
     name: Combine artifacts
     needs: [typst, latex, verapdf]
