@@ -79,17 +79,29 @@
 \fi%
 }
 
+\newcommand{\parcioTitle}{Title}
+\newcommand{\parcioName}{Author Name}
+\newcommand{\parcioEmail}{author@ovgu.de}
+%\newcommand{\parcioNameTwo}{Second Author}
+%\newcommand{\parcioEmailTwo}{second@ovgu.de}
+
+\hypersetup{
+	pdfauthor={\parcioName},
+	%pdfauthor={\parcioName, \parcioNameTwo},
+	pdftitle={\parcioTitle},
+}
+
 \titlehead{\centering\includegraphics[width=0.75\textwidth]{OVGU-FIN}}
 
-\title{Title}
+\title{\parcioTitle}
 \subtitle{Subtitle}
 
 \author{
-First Author\\
-{\large\href{mailto:first.author@ovgu.de}{\nolinkurl{first.author@ovgu.de}}}
-\and
-Second Author\\
-{\large\href{mailto:second.author@ovgu.de}{\nolinkurl{second.author@ovgu.de}}}
+\parcioName\\
+{\large\href{mailto:\parcioEmail}{\nolinkurl{\parcioEmail}}}
+%\and
+%\parcioNameTwo\\
+%{\large\href{mailto:\parcioEmailTwo}{\nolinkurl{\parcioEmailTwo}}}
 }
 
 \date{\today}
@@ -112,6 +124,16 @@ This report template is available at \url{https://github.com/parcio/templates} a
 
 \section{Introduction}
 \label{sec:introduction}
+
+\subsection{First Steps}
+
+\begin{enumerate}
+	\item Set \mintinline{latex}{\parcioTitle} to the title of your report
+	\item Set \mintinline{latex}{\parcioName} to your full name
+	\item Set \mintinline{latex}{\parcioEmail} to your e-mail address
+	\item Update \mintinline{latex}{\subtitle} with a subtitle (or remove it)
+	\item If there is more than one author, adapt \mintinline{latex}{\parcioNameTwo}, \mintinline{latex}{\parcioEmailTwo}, \mintinline{latex}{\hypersetup} and \mintinline{latex}{\author} as necessary
+\end{enumerate}
 
 \begin{figure}[ht]
 	\centering

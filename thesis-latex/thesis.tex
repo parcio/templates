@@ -83,14 +83,23 @@
 \fi%
 }
 
+\newcommand{\parcioTitle}{Title}
+\newcommand{\parcioName}{Author Name}
+\newcommand{\parcioEmail}{author@ovgu.de}
+
+\hypersetup{
+	pdfauthor={\parcioName},
+	pdftitle={\parcioTitle},
+}
+
 \titlehead{\centering\includegraphics[width=0.75\textwidth]{OVGU-FIN}}
 
 \subject{Bachelor or Master Thesis}
-\title{Title}
+\title{\parcioTitle}
 
 \author{
-Author Name\\
-{\large\href{mailto:author@ovgu.de}{\nolinkurl{author@ovgu.de}}}
+\parcioName\\
+{\large\href{mailto:\parcioEmail}{\nolinkurl{\parcioEmail}}}
 }
 
 \date{\today}
@@ -134,6 +143,16 @@ It also contains \cref{cha:appendix}.
 \label{cha:introduction}
 
 \textit{In this chapter, ...}
+
+\section{First Steps}
+
+\begin{enumerate}
+	\item Set \mintinline{latex}{\parcioTitle} to the title of your thesis
+	\item Set \mintinline{latex}{\parcioName} to your full name
+	\item Set \mintinline{latex}{\parcioEmail} to your e-mail address
+	\item Update \mintinline{latex}{\subject} with the correct thesis type
+	\item Update \mintinline{latex}{\publishers} with your reviewers and supervisors
+\end{enumerate}
 
 \section{Motivation}
 
@@ -272,12 +291,12 @@ for (int i = 0; i < m; i++) {
 
 \section*{Statement of Authorship}
 
-Thesis Title:
+Thesis Title: \parcioTitle
 
 \bigskip
 \bigskip
 
-Name:
+Name: \parcioName
 
 \bigskip
 

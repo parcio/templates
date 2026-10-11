@@ -14,6 +14,7 @@
 \documentclass[
 	aspectratio=169,
 	compress,
+	usepdftitle=false,
 ]{beamer}
 
 \usetheme{Magdeburg}
@@ -62,12 +63,21 @@
 
 \newcommand{\navframetitle}[1]{\frametitle{#1\hfill{\footnotesize\lastsection{}}}}
 
-\title{Title}
+\newcommand{\parcioTitle}{Title}
+\newcommand{\parcioName}{Author Name}
+\newcommand{\parcioEmail}{author@ovgu.de}
+
+\hypersetup{
+	pdfauthor={\parcioName},
+	pdftitle={\parcioTitle},
+}
+
+\title{\parcioTitle}
 \subtitle{Subtitle}
 
-\author[Author Name]{
-Author Name\\
-{\footnotesize\href{mailto:author@ovgu.de}{\nolinkurl{author@ovgu.de}}}
+\author[\parcioName]{
+\parcioName\\
+{\footnotesize\href{mailto:\parcioEmail}{\nolinkurl{\parcioEmail}}}
 }
 
 \date{\today}
@@ -102,6 +112,17 @@ Otto von Guericke University Magdeburg
 	\begin{itemize}
 		\item This presentation template is available at \url{https://github.com/parcio/templates} and consists of \cref{sec:introduction,sec:background,sec:evaluation,sec:conclusion}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\navframetitle{First Steps}
+
+	\begin{enumerate}
+		\item Set \mintinline{latex}{\parcioTitle} to the title of your presentation
+		\item Set \mintinline{latex}{\parcioName} to your full name
+		\item Set \mintinline{latex}{\parcioEmail} to your e-mail address
+		\item Update \mintinline{latex}{\subtitle} with a subtitle (or remove it)
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}
