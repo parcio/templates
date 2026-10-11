@@ -110,9 +110,23 @@ jobs:
           name: latex-artifact
           path: public
           retention-days: 1
+  verapdf:
+    name: veraPDF
+    needs: [typst, latex]
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: public
+          merge-multiple: true
+      - name: Validate PDF/A
+        run: |
+          docker run --rm --volume "${PWD}/public:/data" docker.io/verapdf/cli:latest --flavour 2u --format text --verbose /data/latex/report.pdf /data/latex/thesis.pdf
   combine:
     name: Combine artifacts
-    needs: [typst, latex]
+    needs: [typst, latex, verapdf]
     runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
