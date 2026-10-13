@@ -35,6 +35,7 @@
     margin: 0em,
     header: none,
     footer: none,
+    fill: m-extra-light-gray,
   )
 
   set text(font: "Libertinus Sans", fill: m-dark-teal, text-size)
@@ -205,7 +206,6 @@
     footer: footer,
     header-ascent: 0em,
     margin: (top: 2.5em, bottom: 1em),
-    fill: m-extra-light-gray,
   )
 
   let content = {
