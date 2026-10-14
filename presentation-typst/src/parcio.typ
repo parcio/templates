@@ -1,10 +1,10 @@
 #import "@preview/polylux:0.4.0": slide as polylux-slide, toolbox
 #import "@preview/subpar:0.2.2"
 
-#let m-dark-teal = rgb("#23373b")
-#let m-light-brown = rgb("#eb811b")
-#let m-lighter-brown = rgb("#d6c6b7")
-#let m-extra-light-gray = white.darken(2%)
+#let parcio-dark-teal = rgb("#23373b")
+#let parcio-light-brown = rgb("#eb811b")
+#let parcio-lighter-brown = rgb("#d6c6b7")
+#let parcio-extra-light-gray = white.darken(2%)
 
 #let ovgu-fin-logo = path("OVGU-INF.pdf")
 #let ovgu-red = rgb("#D13F58")
@@ -23,7 +23,7 @@
   grid(
     columns: (ratio * 100%, 1fr),
     rect(fill: ovgu-purple, width: 100%),
-    rect(fill: m-lighter-brown, width: 100%),
+    rect(fill: parcio-lighter-brown, width: 100%),
   )
 }
 
@@ -35,9 +35,10 @@
     margin: 0em,
     header: none,
     footer: none,
+    fill: white,
   )
 
-  set text(font: "Libertinus Sans", fill: m-dark-teal, text-size)
+  set text(font: "Libertinus Sans", fill: parcio-dark-teal, text-size)
   set list(indent: 1em)
   set enum(indent: 1em)
   
@@ -205,7 +206,6 @@
     footer: footer,
     header-ascent: 0em,
     margin: (top: 2.5em, bottom: 1em),
-    fill: m-extra-light-gray,
   )
 
   let content = {
@@ -231,11 +231,11 @@
     #set text(gray) if new-section != none
 
     #if show-title [
-      - #text(m-dark-teal, context m-metadata.get().title)
+      - #text(parcio-dark-teal, context m-metadata.get().title)
     ]
 
     - #toolbox.all-sections((s, c) => list(
-        ..s.map(x => if x.body.text == new-section { text(m-dark-teal, x) } else { x })
+        ..s.map(x => if x.body.text == new-section { text(parcio-dark-teal, x) } else { x })
       ))
   ]
 )

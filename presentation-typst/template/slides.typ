@@ -110,6 +110,18 @@
   ]
 ]
 
+#slide(title: "Colors")[
+  #grid(align: (left + horizon, center + horizon) * 2, columns: (1fr, ) * 4, row-gutter: 5pt,
+    [parcio-dark-teal], [#square(stroke: black, fill: parcio-dark-teal)], [parcio-light-brown], [#square(stroke: black, fill: parcio-light-brown)],
+    [parcio-lighter-brown], [#square(stroke: black, fill: parcio-lighter-brown)], [parcio-extra-light-gray], [#square(stroke: black, fill: parcio-extra-light-gray)],
+    [ovgu-red], [#square(stroke: black, fill: ovgu-red)], [ovgu-purple], [#square(stroke: black, fill: ovgu-purple)],
+    [ovgu-blue], [#square(stroke: black, fill: ovgu-blue)], [ovgu-darkgray], [#square(stroke: black, fill: ovgu-darkgray)],
+    [ovgu-lightgray], [#square(stroke: black, fill: ovgu-lightgray)], [ovgu-orange], [#square(stroke: black, fill: ovgu-orange)]
+  
+  
+  )
+]
+
 #slide(title: "Todos", new-section: "Conclusion")[
   #todo("FIXME")
   #lorem(125)
